@@ -33,7 +33,7 @@ RUN apt-get install -y \
     dirmngr \
     gnupg2 \
     curl \
-    lsb_release
+    lsb-release
 
 
 # =============================================================================
