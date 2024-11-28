@@ -34,7 +34,8 @@ RUN apt-get install -y \
     gnupg2 \
     curl \
     lsb-release \
-    git
+    git \
+    build-essential
 
 
 # =============================================================================
