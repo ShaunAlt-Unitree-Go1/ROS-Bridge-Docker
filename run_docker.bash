@@ -37,10 +37,7 @@ run_docker() {
         -it \
         --net=host \
         --ipc=host \
-        # --device=/dev/dri:/dev/dri \
         --name=$CONTAINER_NAME \
-        # -e DISPLAY=$DISPLAY \
-        # -v /tmp/.X11-unix:/tmp/.X11-unix \
         go1-sim-noetic
 }
 
