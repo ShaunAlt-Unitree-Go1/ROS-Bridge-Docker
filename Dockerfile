@@ -64,7 +64,9 @@ RUN apt-get upgrade -y
 # =============================================================================
 RUN apt-get install -y \
     ros-noetic-ros-base \
+    ros-noetic-sensor-msgs \
     ros-galactic-ros-base \
+    ros-galactic-sensor-msgs \
     python3-rosdep
 
 
