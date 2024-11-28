@@ -101,8 +101,8 @@ WORKDIR /home/rosuser/bridge_ws/src
 RUN git clone https://github.com/ros2/ros1_bridge.git -b galactic
 # RUN git clone https://github.com/ros/common_msgs.git -b noetic-devel
 WORKDIR /home/rosuser/bridge_ws
-RUN rosdep install --from-paths src --ignore-src --rosdistro noetic -y
-RUN rosdep install --from-paths src --ignore-src --rosdistro galactic -y
+# RUN rosdep install --from-paths src --ignore-src --rosdistro noetic -y
+# RUN rosdep install --from-paths src --ignore-src --rosdistro galactic -y
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && source /opt/ros/galactic/setup.bash && colcon build --packages-select ros1_bridge --cmake-force-configure"
 
 
