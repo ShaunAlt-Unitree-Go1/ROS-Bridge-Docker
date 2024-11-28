@@ -26,14 +26,15 @@ RUN apt-get upgrade -y
 
 
 # =============================================================================
-# Install Initial Debian Packages
+# Install Debian Packages
 # =============================================================================
 RUN apt-get install -y \
     tzdata \
     dirmngr \
     gnupg2 \
     curl \
-    lsb-release
+    lsb-release \
+    git
 
 
 # =============================================================================
@@ -59,12 +60,12 @@ RUN apt-get upgrade -y
 
 
 # =============================================================================
-# Install Debian Packages
+# Install ROS Packages
 # =============================================================================
 RUN apt-get install -y \
     ros-noetic-ros-base \
     ros-galactic-ros-base \
-    git
+    python3-rosdep
 
 
 # =============================================================================
@@ -85,6 +86,7 @@ WORKDIR /home/rosuser
 # =============================================================================
 # Updating ROS Dependencies
 # =============================================================================
+RUN rosdep init
 RUN rosdep update --rosdistro noetic
 RUN rosdep update --rosdistro galactic
 
