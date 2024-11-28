@@ -68,7 +68,8 @@ RUN apt-get install -y \
     ros-noetic-sensor-msgs \
     ros-galactic-ros-base \
     ros-galactic-sensor-msgs \
-    python3-rosdep
+    python3-rosdep \
+    python3-colcon-common-extensions
 
 
 # =============================================================================
