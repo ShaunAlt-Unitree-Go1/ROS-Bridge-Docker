@@ -38,7 +38,7 @@ run_docker() {
         --net=host \
         --ipc=host \
         --name=$CONTAINER_NAME \
-        go1-sim-noetic
+        ros-bridge
 }
 
 
