@@ -66,8 +66,10 @@ RUN apt-get upgrade -y
 RUN apt-get install -y \
     ros-noetic-ros-base \
     ros-noetic-sensor-msgs \
+    ros-noetic-tf2-tools \
     ros-galactic-ros-base \
     ros-galactic-sensor-msgs \
+    ros-galactic-tf2-tools \
     python3-rosdep \
     python3-colcon-common-extensions
 
