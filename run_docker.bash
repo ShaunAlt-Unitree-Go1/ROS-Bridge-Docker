@@ -33,12 +33,29 @@ new_tab() {
 # Run the Docker Image
 # =============================================================================
 run_docker() {
-    docker run \
+    local add_host=false
+
+    # parse run-time arguments
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --add-host) add_host=true;;
+            *) echo "Invalid Option: $1"; return 1;;
+        esac
+        shift
+    done
+
+    cmd="docker run \
         -it \
         --net=host \
         --ipc=host \
         --name=$CONTAINER_NAME \
-        ros-bridge
+        ros-bridge"
+
+    if $add_host; then
+        cmd="$cmd --add-host=raspberrypi:192.168.123.161"
+    fi
+
+    eval $cmd
 }
 
 
@@ -55,6 +72,7 @@ usage() {
     echo "Options:"
     echo "    -h        Print this help message."
     echo "    -n name   Specify the container name (default: ros_bridge)."
+    echo "    -p        Use if running with the physical Unitree Go1 Robot."
     echo "    -t        Run the container from a new terminal tab. This "
     echo "              requires that the container has already been created."
 }
@@ -63,7 +81,8 @@ usage() {
 # =============================================================================
 # Handle Arguments
 # =============================================================================
-while getopts "hn:t" opt; do
+ADD_HOST=false
+while getopts "hn:pt" opt; do
     case "$opt" in
         h)
             usage
@@ -76,6 +95,9 @@ while getopts "hn:t" opt; do
             new_tab
             exit 0
             ;;
+        p)
+            ADD_HOST=true
+            ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
             usage
@@ -84,7 +106,11 @@ while getopts "hn:t" opt; do
     esac
 done
 delete_old_container
-run_docker
+if $ADD_HOST; then
+    run_docker --add-host
+else
+    run_docker
+fi
 exit 0
 
 
