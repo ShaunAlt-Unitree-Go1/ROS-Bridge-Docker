@@ -39,10 +39,17 @@ This project relies on the [ros2/ros1_bridge](https://github.com/ros2/ros1_bridg
     ```
 - Source the ROS bridge before using any of the other commands.
     ``` bash
-    $ cd /home/rosuser/bridge_ws # should already be here
-    $ source install/setup.bash
+    $ source /home/rosuser/bridge_ws/install/setup.bash
     ```
 - If you just want to bridge topics, use the `dynamic_bridge`. This will allow you to dynamically bridge topics (use the `--help` option to get more information).
     ``` bash
     $ ros2 run ros1_bridge dynamic_bridge
+    ```
+
+## Running with Physical Robot
+If running the bridge with a physical robot, you will need to also run the following ROS nodes.
+- This launch file will create nodes that remap the lidar data from the lidar sensor topics into the standardized ros topics.
+    ``` bash
+    $ source /home/rosuser/noetic_ws/devel/setup.bash
+    $ roslaunch relay_physical relay_physical.launch
     ```
