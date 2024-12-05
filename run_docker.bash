@@ -33,12 +33,12 @@ new_tab() {
 # Run the Docker Image
 # =============================================================================
 run_docker() {
-    local add_host=false
+    local add_host=0
 
     # parse run-time arguments
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
-            --add-host) add_host=true;;
+            --add-host) add_host=1;;
             *) echo "Invalid Option: $1"; return 1;;
         esac
         shift
@@ -46,7 +46,7 @@ run_docker() {
 
     cmd="docker run -it --net=host --ipc=host --name=$CONTAINER_NAME"
 
-    if $add_host; then
+    if [ $add_host -eq 1 ]; then
         cmd="$cmd --add-host=raspberrypi:192.168.123.161"
     fi
 
@@ -76,7 +76,7 @@ usage() {
 # =============================================================================
 # Handle Arguments
 # =============================================================================
-ADD_HOST=false
+ADD_HOST=0
 while getopts "hn:pt" opt; do
     case "$opt" in
         h)
@@ -91,7 +91,7 @@ while getopts "hn:pt" opt; do
             exit 0
             ;;
         p)
-            ADD_HOST=true
+            ADD_HOST=1
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
@@ -101,7 +101,7 @@ while getopts "hn:pt" opt; do
     esac
 done
 delete_old_container
-if $ADD_HOST; then
+if [ $ADD_HOST -eq 1 ]; then
     run_docker --add-host
 else
     run_docker
