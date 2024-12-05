@@ -102,7 +102,9 @@ RUN rosdep update --rosdistro galactic
 # =============================================================================
 WORKDIR /home/rosuser/bridge_ws/src
 RUN git clone https://github.com/ros2/ros1_bridge.git -b galactic
+RUN git clone https://github.com/ShaunAlt-Unitree-Go1/ROS-Bridge-Noetic.git
 WORKDIR /home/rosuser/bridge_ws
+RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && catkin_make --pkg relay_physical"
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && source /opt/ros/galactic/setup.bash && colcon build --packages-select ros1_bridge --cmake-force-configure"
 
 
