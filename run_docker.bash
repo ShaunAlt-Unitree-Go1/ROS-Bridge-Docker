@@ -44,18 +44,13 @@ run_docker() {
         shift
     done
 
-    cmd="docker run \
-        -it \
-        --net=host \
-        --ipc=host \
-        --name=$CONTAINER_NAME \
-        ros-bridge"
+    cmd="docker run -it --net=host --ipc=host --name=$CONTAINER_NAME"
 
     if $add_host; then
         cmd="$cmd --add-host=raspberrypi:192.168.123.161"
     fi
 
-    eval $cmd
+    eval "$cmd ros-bridge"
 }
 
 
