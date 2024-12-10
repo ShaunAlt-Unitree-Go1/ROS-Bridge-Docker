@@ -101,25 +101,26 @@ RUN rosdep update --rosdistro galactic
 # =============================================================================
 # Clone + Build Noetic Support Packages
 # =============================================================================
-WORKDIR /home/rosuser/noetic_ws/src
+WORKDIR /home/rosuser/noetic_ws/src/
 RUN git clone https://github.com/ShaunAlt-Unitree-Go1/ROS-Bridge-Noetic.git
-WORKDIR /home/rosuser/noetic_ws
+WORKDIR /home/rosuser/noetic_ws/
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && catkin_make"
 
 
 # =============================================================================
 # Clone + Build ROS Bridge
 # =============================================================================
-WORKDIR /home/rosuser/bridge_ws/src
+WORKDIR /home/rosuser/bridge_ws/src/
 RUN git clone https://github.com/ros2/ros1_bridge.git -b galactic
-WORKDIR /home/rosuser/bridge_ws
+WORKDIR /home/rosuser/bridge_ws/
+COPY bridge.yaml /home/rosuser/bridge_ws/
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && source /opt/ros/galactic/setup.bash && colcon build --packages-select ros1_bridge --cmake-force-configure"
 
 
 # =============================================================================
 # Set Default User
 # =============================================================================
-WORKDIR /home/rosuser
+WORKDIR /home/rosuser/
 USER rosuser
 
 
