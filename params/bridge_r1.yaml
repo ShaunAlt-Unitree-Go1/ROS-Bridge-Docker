@@ -1,0 +1,12 @@
+topics:
+  - topic: /r1/scan
+    type: sensor_msgs/msg/LaserScan
+    queue_size: 10
+  - topic: /r1/cmd_vel
+    type: geometry_msgs/msg/Twist
+  - topic: /tf
+    type: tf2_msgs/msg/TFMessage
+    queue_size: 10
+  - topic: /r1/odom
+    type: nav_msgs/msg/Odometry
+    queue_size: 10
