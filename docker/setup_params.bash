@@ -21,8 +21,7 @@ echo "topics:" > $SCRIPT_DIR/bridge.yaml
 # Write Namespace Parameters
 # =============================================================================
 if [ $# -eq 0 ]; then
-echo "
-  - topic: /scan
+echo "  - topic: /scan
     type: sensor_msgs/msg/LaserScan
     queue_size: 10
   - topic: /cmd_vel
@@ -32,8 +31,7 @@ echo "
     queue_size: 10" >> $SCRIPT_DIR/bridge.yaml
 else
 for robot_name in "$@"; do
-echo "
-  - topic: $robot_name/scan
+echo "  - topic: $robot_name/scan
     type: sensor_msgs/msg/LaserScan
     queue_size: 10
   - topic: $robot_name/cmd_vel
@@ -48,8 +46,7 @@ fi
 # =============================================================================
 # Write Generic Parameters
 # =============================================================================
-echo "
-  - topic: /tf
+echo "  - topic: /tf
     type: tf2_msgs/msg/TFMessage
   - topic: /tf_static
     type: tf2_msgs/msg/TFMessage" >> $SCRIPT_DIR/bridge.yaml
