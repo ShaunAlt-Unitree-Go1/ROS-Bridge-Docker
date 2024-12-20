@@ -114,6 +114,7 @@ WORKDIR /home/rosuser/bridge_ws/src/
 RUN git clone https://github.com/ros2/ros1_bridge.git -b galactic
 WORKDIR /home/rosuser/bridge_ws/
 COPY params/ /home/rosuser/bridge_ws/params/
+COPY setup_params.bash /home/rosuser/bridge_ws/setup_params.bash
 RUN /bin/bash -c "source /opt/ros/noetic/setup.bash && source /opt/ros/galactic/setup.bash && colcon build --packages-select ros1_bridge --cmake-force-configure"
 
 
